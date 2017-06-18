@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Cipher
+{
+private:
+	int key;
+public:
+	Cipher(int key);
+	std::string code(std::string input);
+	std::string decipher(std::string input);
+};
+
+Cipher::Cipher(int key)
+{
+	this->key = key;
+};
+
+string Cipher::code(string input) // функция зашифрования строки
+{
+	for (int i = 0; i < input.size(); i++)
+	{
+		if ((input[i] > 'A') && (input[i] < 'Z'))
+		{
+			input[i] += key;
+		}
+		else if ((input[i] > 'a') && (input[i] < 'z'))
+		{
+			input[i] = input[i] + key;
+		}
+	}
+	return input;
+};
+
+string Cipher::decipher(string input) // функция расшифрования строки
+{
+
+	for (int i = 0; i < input.size(); i++)
+	{
+		if ((input[i] > 'A' - 2) && (input[i] < 'Z' + 1))
+		{
+			input[i] -= key;
+			if (input[i] < 'A' + 1)
+
+				if ((input[i] > 'a') && (input[i] < 'z'))
+				{
+					input[i] -= key;
+				}
+			return input;
+		}
+	}
+};
+int main()
+{
+	int i;
+	string stroka;
+	int key;
+	cout << "Enter your string: " << endl;
+	cin >> stroka;
+	cout << "Enter key: " << endl;
+	cin >> key;
+	cout << "Enter 0 if encrypted, or 1 if decrypted: " << endl;
+	cin >> i;
+
+	if (i = '0') {
+		Cipher billchipher(key);
+		cout << billchipher.code(stroka) << endl;
+	}
+	else {
+		if (i = '1')
+		{
+			Cipher billchipher(key);
+			cout << billchipher.decipher(stroka) << endl;
+		} else << "oshibka" << endl;
+	return 0;
+}
